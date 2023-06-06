@@ -16,8 +16,8 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 #  chmod 755 /usr/local/bin/fast-git-download
 
 
-CLONE https://github.com/conpagoaus/image_processor.git DEFAULT=add-webapp /frontend 
-COPY /frontend/ .
+CLONE https://github.com/conpagoaus/image_processor.git DEFAULT=add-webapp /root/frontend 
+COPY /root/frontend/ .
 RUN yarn install --frozen-lockfile
 RUN yarn compile
 RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/

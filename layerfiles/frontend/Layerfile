@@ -10,15 +10,15 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 
 
 # get git
-RUN curl -Lo /usr/local/bin/fast-git-download
-https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download
-&& \
- chmod 755 /usr/local/bin/fast-git-download
+# RUN curl -Lo /usr/local/bin/fast-git-download
+# https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download
+# && \
+#  chmod 755 /usr/local/bin/fast-git-download
 
 
-RUN REPEATABLE fast-git-download conpagoaus/image_processor /frontend origin/add-webapp && \
- cd /frontend && \
-    yarn install --frozen-lockfile && \
-    yarn compile
-RUN BACKGROUND cd /frontend && yarn functions-framework --target=healthCheck --source=build/
+CLONE conpagoaus/image_processor DEFAULT=add-webapp /frontend 
+COPY /frontend .
+RUN yarn install --frozen-lockfile
+RUN yarn compile
+RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/
 EXPOSE WEBSITE http://localhost:8080

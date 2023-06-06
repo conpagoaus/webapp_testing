@@ -11,8 +11,10 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 
 # get git
 RUN curl -Lo /usr/local/bin/fast-git-download
-https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download && \
+https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download
+&& \
  chmod 755 /usr/local/bin/fast-git-download
+
 
 RUN REPEATABLE fast-git-download conpagoaus/image_processor /frontend origin/add-webapp && \
  cd /frontend && \

@@ -17,7 +17,7 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 
 
 CLONE conpagoaus/image_processor DEFAULT=add-webapp /frontend 
-COPY /frontend .
+COPY /frontend/ .
 RUN yarn install --frozen-lockfile
 RUN yarn compile
 RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/

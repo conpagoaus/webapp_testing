@@ -16,7 +16,7 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 #  chmod 755 /usr/local/bin/fast-git-download
 
 
-CLONE conpagoaus/image_processor DEFAULT=add-webapp /frontend 
+CLONE https://github.com/conpagoaus/image_processor DEFAULT=add-webapp /frontend 
 COPY /frontend/ .
 RUN yarn install --frozen-lockfile
 RUN yarn compile

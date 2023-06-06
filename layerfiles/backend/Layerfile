@@ -8,4 +8,4 @@ RUN sudo npm install npm@latest -g
 COPY / .
 RUN npm install
 RUN BACKGROUND node app.js
-EXPOSE WEBSITE http://localhost:3000 /api
+EXPOSE WEBSITE http://localhost:3000 /api /

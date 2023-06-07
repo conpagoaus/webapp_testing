@@ -20,4 +20,4 @@ WORKDIR /frontend
 RUN REPEATABLE yarn install --frozen-lockfile
 RUN REPEATABLE yarn compile
 RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/
-EXPOSE WEBSITE http://localhost:8080
+EXPOSE WEBSITE http://localhost:8080 /

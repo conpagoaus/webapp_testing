@@ -10,20 +10,19 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 
 
 # get git
-# RUN curl -Lo /usr/local/bin/fast-git-download https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download && \
-#  chmod 755 /usr/local/bin/fast-git-download
+RUN curl -Lo /usr/local/bin/fast-git-download https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download && \
+ chmod 755 /usr/local/bin/fast-git-download
 
-# RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/main
+RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/main
 
 
-CLONE https://github.com/conpagoaus/image_processor.git /root/frontend
-# WORKDIR /frontend
+WORKDIR /frontend
 # RUN cd /root/frontend && \
 #     yarn install --frozen-lockfile && \
 #     yarn compile && \
 #     yarn build
 # # COPY / .
-RUN ls -al /root/frontend
+RUN ls -al /frontend
 RUN yarn install --frozen-lockfile
 RUN yarn compile
 RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/

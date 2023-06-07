@@ -13,7 +13,12 @@ RUN curl -fSsL https://deb.nodesource.com/setup_16.x | bash && \
 RUN curl -Lo /usr/local/bin/fast-git-download https://gist.githubusercontent.com/ColinChartier/6bff7cf77adf7d2a8d7d699a5deed707/raw/0b89b3037548ce7e4fb24bea96628014da1bbf05/download && \
  chmod 755 /usr/local/bin/fast-git-download
 
-RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/add-webapp
+BUILD ENV API_EXTRA
+# is comma separated list of extra configs
+# example 
+# frontend=add-webapp
+RUN export FRONTEND_HEAD = echo "$API_EXTRA" | tr "," "\n" | grep frontend | cut -d "=" -f 2
+RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/${FRONTEND_HEAD:-main}
 
 
 WORKDIR /frontend

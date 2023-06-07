@@ -16,10 +16,8 @@ RUN curl -Lo /usr/local/bin/fast-git-download https://gist.githubusercontent.com
 BUILD ENV API_EXTRA
 # is comma separated list of extra configs
 # example 
-# frontend=add-webapp
-ENV FRONTEND_HEAD='echo "$API_EXTRA" | tr "," "\n" | grep frontend | cut -d "=" -f 2'
-RUN echo $FRONTEND_HEAD
-RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/${FRONTEND_HEAD:-main}
+# frontend=add-webapp,backend=develop
+RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/$(./extract_repo_ref.sh $API_EXTRA frontend)
 
 
 WORKDIR /frontend

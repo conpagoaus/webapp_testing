@@ -17,7 +17,9 @@ BUILD ENV API_EXTRA
 # is comma separated list of extra configs
 # example 
 # frontend=add-webapp,backend=develop
-RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/$(./extract_repo_ref.sh $API_EXTRA frontend)
+RUN ./extract_repo_ref.sh $API_EXTRA frontend > /frontend.ref
+RUN cat /frontend.ref
+RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/$(cat /frontend.ref)
 
 
 WORKDIR /frontend

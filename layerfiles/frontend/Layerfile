@@ -18,6 +18,7 @@ BUILD ENV API_EXTRA
 # example 
 # frontend=add-webapp
 ENV FRONTEND_HEAD='echo "$API_EXTRA" | tr "," "\n" | grep frontend | cut -d "=" -f 2'
+RUN echo $FRONTEND_HEAD
 RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/${FRONTEND_HEAD:-main}
 
 

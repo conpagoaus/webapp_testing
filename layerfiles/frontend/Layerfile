@@ -17,7 +17,7 @@ BUILD ENV API_EXTRA
 # is comma separated list of extra configs
 # example 
 # frontend=add-webapp
-RUN export FRONTEND_HEAD = echo "$API_EXTRA" | tr "," "\n" | grep frontend | cut -d "=" -f 2
+ENV FRONTEND_HEAD = echo "$API_EXTRA" | tr "," "\n" | grep frontend | cut -d "=" -f 2
 RUN REPEATABLE fast-git-download conpagoaus/image_processor.git /frontend origin/${FRONTEND_HEAD:-main}
 
 

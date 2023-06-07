@@ -23,6 +23,7 @@ WORKDIR /frontend
 #     yarn compile && \
 #     yarn build
 # # COPY / .
+RUN ls -al
 RUN yarn install --frozen-lockfile
 RUN yarn compile
 RUN BACKGROUND yarn functions-framework --target=healthCheck --source=build/
